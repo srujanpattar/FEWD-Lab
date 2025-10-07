@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Table</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 70%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    thead {
+      background-color: #0078ff;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1faff;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 95%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #0078ff;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005ecb;
+    }
+
+    .remove-btn {
+      background-color: #ff4d4d;
+    }
+
+    .remove-btn:hover {
+      background-color: #d93636;
+    }
+
+    .add-btn {
+      margin-top: 20px;
+      padding: 10px 18px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dynamic Table</h1>
+
+  <table id="dynamic-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="name[]"></td>
+        <td><input type="email" name="email[]"></td>
+        <td><button type="button" class="remove-btn" onclick="removeRow(this)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="add-btn" onclick="addRow()">+ Add Row</button>
+
+  <script >
+    function addRow() {
+      var table = document.getElementById("dynamic-table").getElementsByTagName('tbody')[0];
+      var newRow = table.insertRow();
+      var cell1 = newRow.insertCell(0);
+      var cell2 = newRow.insertCell(1);
+      var cell3 = newRow.insertCell(2);
+
+      cell1.innerHTML = '<input type="text" name="name[]">';
+      cell2.innerHTML = '<input type="email" name="email[]">';
+      cell3.innerHTML = '<button type="button" class="remove-btn" onclick="removeRow(this)">Remove</button>';
+    }
+
+    function removeRow(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+  </script>
+</body>
+</html>
